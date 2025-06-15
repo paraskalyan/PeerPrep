@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router'
 import Home from './pages/Home'
 import Layout from './components/Layout'
 import UserProfile from './pages/UserProfile'
+import Chat from './pages/Chat'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout><Home /></Layout>} />
           <Route path='/profile' element={<Layout><UserProfile /></Layout>} />
+          <Route path='/chat' element={<Layout><Chat /></Layout>} />
         </Routes>
       </BrowserRouter>
     </>

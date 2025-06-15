@@ -3,6 +3,7 @@ import { Card, CardContent, CardFooter, CardHeader } from './ui/card'
 import { Badge } from './ui/badge'
 import { MessageCircle, UserPlus } from 'lucide-react'
 import { Button } from './ui/button'
+import { Link } from 'react-router'
 const FriendCard = () => {
     return (
         <Card className=' w-[340px]'>
@@ -13,16 +14,18 @@ const FriendCard = () => {
                     <Button className=' bg-[#f1f4ff] rounded-lg hover:bg-[#f8f8f8]  '>
                         <UserPlus color='blue' />
                     </Button>
-                    <Button className=' bg-[#f1f4ff] rounded-lg hover:bg-[#f8f8f8]  '>
-                        <MessageCircle color='blue' />
-                    </Button>
+                    <Link to='/chat'>
+                        <Button className=' bg-[#f1f4ff] rounded-lg hover:bg-[#f8f8f8]  '>
+                            <MessageCircle color='blue' />
+                        </Button>
+                    </Link>
                 </div>
 
             </CardHeader>
             <CardContent className=' space-y-1'>
                 <h3 className=' text-xl font-bold'>Paras Kalyan</h3>
                 <p className=' text-sm'>@paraskalyan</p>
-                <p>Engineer, designer and developer that can be found everywhere</p>
+                {/* <p>Engineer, designer and developer that can be found everywhere</p> */}
             </CardContent>
             <CardFooter className=' space-x-4'>
                 <Badge>Advanced</Badge>
