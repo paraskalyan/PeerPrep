@@ -13,7 +13,7 @@ const syncUserCreation = inngest.createFunction(
     const userData = {
       name: first_name + " " + last_name,
       clerkId: id,
-      email: email_addresses[0].email_addresses,
+      email: email_addresses[0].email_address,
       image: image_url,
     };
     await User.create(userData);
@@ -38,7 +38,7 @@ const syncUserUpdation = inngest.createFunction(
     const userData = {
       name: first_name + " " + last_name,
       clerkId: id,
-      email: email_addresses[0].email_addresses,
+      email: email_addresses[0].email_address,
       image: image_url,
     };
     await User.findOneAndUpdate({ clerkId: id }, userData, { new: true });
