@@ -6,7 +6,12 @@ import friendRouter from "./routes/friends.route.js";
 import { clerkMiddleware } from "@clerk/express";
 import { serve } from "inngest/express";
 import { inngest, functions } from "./inngest/index.js";
+import { connectDb } from "./lib/db.js";
+import dotenv from "dotenv";
 const app = express();
+
+dotenv.config();
+await connectDb();
 
 app.use(cors());
 app.use(express.json());
