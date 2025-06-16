@@ -1,4 +1,4 @@
-import { SignedIn, SignedOut, SignInButton, useAuth, UserButton } from '@clerk/clerk-react'
+import { SignedIn, SignedOut, SignInButton, SignUpButton, useAuth, UserButton } from '@clerk/clerk-react'
 import React from 'react'
 import { Button } from './ui/button'
 
@@ -18,7 +18,9 @@ const Navbar = () => {
             <div>
                 <SignedOut>
 
-                    <SignInButton />
+                    <SignInButton forceRedirectUrl='/' />
+                    <SignUpButton forceRedirectUrl='/signin' />
+
 
                 </SignedOut>
                 <SignedIn>

@@ -19,19 +19,16 @@ const UserSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
-    password: {
+    image: {
       type: String,
-      required: true,
+      default: "",
     },
     bio: {
       type: String,
       default: "",
       maxlength: 300,
     },
-    profilePic: {
-      type: String,
-      default: "",
-    },
+
     experienceLevel: {
       type: String,
       enum: ["Beginner", "Intermediate", "Advanced"],
@@ -47,10 +44,25 @@ const UserSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    role: {
+      type: String,
+    },
+    techStack: [
+      {
+        type: String,
+      },
+    ],
+    tools: [
+      {
+        type: String,
+      },
+    ],
   },
+
   {
     timestamps: true,
   }
 );
 
-export default mongoose.model("User", UserSchema);
+const User = mongoose.model("User", UserSchema);
+export default User;
