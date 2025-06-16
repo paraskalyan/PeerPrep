@@ -20,7 +20,9 @@ app.use("/api/inngest", serve({ client: inngest, functions }));
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/friends", friendRouter);
-
+app.get("/", (req, res) => {
+  res.send("Server is live");
+});
 app.listen(4000, () => {
   console.log("Server running on PORT 4000");
 });
