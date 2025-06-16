@@ -6,9 +6,9 @@ import { Button } from './ui/button'
 import { Link } from 'react-router'
 const FriendCard = () => {
     return (
-        <Card className=' w-[340px]'>
+        <Card className='w-fit'>
             <CardHeader className=' flex justify-between'>
-                <img className='rounded-full' width={100} src='https://unavatar.io/github/1stevengrant' />
+                <img className='rounded-full' width={80} src='https://unavatar.io/github/1stevengrant' />
                 <div className='space-x-3'>
 
                     <Button className=' bg-[#f1f4ff] rounded-lg hover:bg-[#f8f8f8]  '>
@@ -23,11 +23,11 @@ const FriendCard = () => {
 
             </CardHeader>
             <CardContent className=' space-y-1'>
-                <h3 className=' text-xl font-bold'>Paras Kalyan</h3>
+                <h3 className=' text-lg font-bold'>Paras Kalyan</h3>
                 <p className=' text-sm'>@paraskalyan</p>
                 {/* <p>Engineer, designer and developer that can be found everywhere</p> */}
             </CardContent>
-            <CardFooter className=' space-x-4'>
+            <CardFooter className=' space-x-2'>
                 <Badge>Advanced</Badge>
                 <div className=' text-sm'>30 Friends</div>
                 <div className=' text-sm'>Joined Apr 2020</div>

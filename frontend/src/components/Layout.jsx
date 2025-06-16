@@ -5,8 +5,10 @@ import AppSidebar from './AppSidebar'
 const Layout = ({ children }) => {
     return (
         <SidebarProvider>
-            <AppSidebar />
-            <main className='w-full '>
+            <div className='flex-1'>
+                <AppSidebar />
+            </div>
+            <main className='w-full'>
                 {/* <SidebarTrigger /> */}
                 {children}
             </main>
