@@ -10,20 +10,28 @@ import UserProfile from './pages/UserProfile'
 import Chat from './pages/Chat'
 import Signup from './pages/Signup'
 import Signin from './pages/Signin'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   return (
     <>
       <Navbar />
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Layout><Home /></Layout>} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/signin' element={<Signin />} />
-          <Route path='/profile' element={<Layout><UserProfile /></Layout>} />
-          <Route path='/chat' element={<Layout><Chat /></Layout>} />
-        </Routes>
-      </BrowserRouter>
+
+      <Routes>
+        <Route path='/' element={
+          <ProtectedRoute>
+            <Layout><Home /></Layout>
+          </ProtectedRoute>
+        } />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/signin' element={<Signin />} />
+        <Route path='/profile' element={
+          <ProtectedRoute>
+            <Layout><UserProfile /></Layout>
+          </ProtectedRoute>
+        } />
+        <Route path='/chat' element={<Layout><Chat /></Layout>} />
+      </Routes>
     </>
   )
 }
