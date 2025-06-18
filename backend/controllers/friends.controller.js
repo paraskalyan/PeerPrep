@@ -46,7 +46,12 @@ export const getOutRequests = async (req, res) => {
 export const getIncomingRequests = async (req, res) => {
   const authId = req.auth.userId;
   try {
-    const data = await FriendRequest.find({ to: authId, status: "Pending" });
+    const user = await User.findOne({ clerkId: authId });
+    if (!user) return;
+    const data = await FriendRequest.find({
+      to: user._id,
+      status: "Pending",
+    }).populate("from", "name image");
     return res.status(200).json(data);
   } catch (error) {
     console.log(error);
@@ -56,11 +61,14 @@ export const getIncomingRequests = async (req, res) => {
 export const sendRequest = async (req, res) => {
   const { id: recieverId } = req.params;
   const authId = req.auth.userId;
-
+  console.log(authId);
   try {
+    const user = await User.findOne({ clerkId: authId });
+    if (!user) return;
+
     const data = await FriendRequest.create({
       to: recieverId,
-      from: authId,
+      from: user._id,
     });
     console.log(data);
     res.status(200).json({ success: true, message: "Request sent" });

@@ -12,7 +12,7 @@ const items = [
     },
     {
         title: "Profile",
-        url: "/profile",
+        url: "/profile/:",
         icon: User,
     },
     {
@@ -32,7 +32,7 @@ const items = [
     },
     {
         title: "Notifications",
-        url: "#",
+        url: "/notifications",
         icon: Bell,
     },
 ]

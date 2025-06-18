@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 const FriendRequestSchema = mongoose.Schema(
   {
     to: {
-      type: String,
+      type: mongoose.Schema.ObjectId,
       required: true,
       ref: "User",
     },
     from: {
-      type: String,
+      type: mongoose.Schema.ObjectId,
       required: true,
       ref: "User",
     },

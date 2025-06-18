@@ -11,6 +11,7 @@ import Chat from './pages/Chat'
 import Signup from './pages/Signup'
 import Signin from './pages/Signin'
 import ProtectedRoute from './components/ProtectedRoute'
+import Notifications from './pages/Notifications'
 
 function App() {
   return (
@@ -25,12 +26,13 @@ function App() {
         } />
         <Route path='/signup' element={<Signup />} />
         <Route path='/signin' element={<Signin />} />
-        <Route path='/profile' element={
+        <Route path='/profile/:profileId' element={
           <ProtectedRoute>
             <Layout><UserProfile /></Layout>
           </ProtectedRoute>
         } />
         <Route path='/chat' element={<Layout><Chat /></Layout>} />
+        <Route path='/notifications' element={<Layout><Notifications /></Layout>} />
       </Routes>
     </>
   )

@@ -8,17 +8,22 @@ import { FaGithub, FaLinkedin, FaLinkedinIn, FaTwitter } from 'react-icons/fa'
 import { useQuery } from '@tanstack/react-query'
 import { axiosInstance } from '../lib/axiosInstance'
 import { useAuth } from '@clerk/clerk-react'
+import { useParams } from 'react-router'
 const UserProfile = () => {
+
+    const { profileId } = useParams()
     const { getToken } = useAuth();
+
     const { data: userData, isLoading, error } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
-            const res = await axiosInstance.get(`/users/me`, {
+            const res = await axiosInstance.get(`/users/${profileId}`, {
                 headers: {
                     Authorization: `Bearer ${await getToken()}`
                 }
             });
-            return res.data[0];
+            console.log(res.data)
+            return res.data;
         },
     })
 

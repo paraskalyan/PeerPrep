@@ -11,7 +11,17 @@ export const getMyProfile = async (req, res) => {
   }
 };
 
-export const getUserProfile = async (req, res) => {};
+export const getUserProfile = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await User.findById(id);
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+};
 
 export const updateProfile = async (req, res) => {};
 

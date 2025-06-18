@@ -17,7 +17,7 @@ const FriendCard = ({ user }) => {
     const sendFriendReq = async (id) => {
         const token = await getToken()
         try {
-            const res = await axiosInstance.post(`/friends/request/${id}`, {}, {
+            const res = await axiosInstance.post(`/friends/request/${_id}`, {}, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
