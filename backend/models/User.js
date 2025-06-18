@@ -19,6 +19,12 @@ const UserSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
+    username: {
+      type: String,
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
     image: {
       type: String,
       default: "",
@@ -47,16 +53,9 @@ const UserSchema = new mongoose.Schema(
     role: {
       type: String,
     },
-    techStack: [
-      {
-        type: String,
-      },
-    ],
-    tools: [
-      {
-        type: String,
-      },
-    ],
+    techStack: {
+      type: String,
+    },
   },
 
   {

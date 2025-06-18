@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 const FriendRequestSchema = mongoose.Schema(
   {
     to: {
-      type: mongoose.Schema.ObjectId,
+      type: String,
       required: true,
       ref: "User",
     },
     from: {
-      type: mongoose.Schema.ObjectId,
+      type: String,
       required: true,
       ref: "User",
     },
@@ -20,4 +20,6 @@ const FriendRequestSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("FriendRequest", FriendRequestSchema);
+const FriendRequest = mongoose.model("FriendRequest", FriendRequestSchema);
+
+export default FriendRequest;

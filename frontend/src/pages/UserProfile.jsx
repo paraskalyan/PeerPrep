@@ -1,21 +1,41 @@
 import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
+import { Badge } from '../components/ui/badge'
 import { Avatar, AvatarImage } from '../components/ui/avatar'
 import { Separator } from '../components/ui/separator'
+import PageLoader from '../components/PageLoader'
 import { FaGithub, FaLinkedin, FaLinkedinIn, FaTwitter } from 'react-icons/fa'
+import { useQuery } from '@tanstack/react-query'
+import { axiosInstance } from '../lib/axiosInstance'
+import { useAuth } from '@clerk/clerk-react'
 const UserProfile = () => {
+    const { getToken } = useAuth();
+    const { data: userData, isLoading, error } = useQuery({
+        queryKey: ['user'],
+        queryFn: async () => {
+            const res = await axiosInstance.get(`/users/me`, {
+                headers: {
+                    Authorization: `Bearer ${await getToken()}`
+                }
+            });
+            return res.data[0];
+        },
+    })
+
+    if (isLoading) return <PageLoader />
+
     return (
         <div className='min-h-screen p-5 flex items-center justify-center'>
-            <div className='grid grid-cols-3 gap-5'>
-                <div className='col-span-1'>
+            <div className='grid grid-cols-3 grid-rows-2 gap-5'>
+                <div className='row-span-2'>
                     <Card>
                         <CardHeader className=' w-full flex flex-col items-center'>
-                            <h1 className='text-3xl font-bold'>Paras Kalyan</h1>
+                            <h1 className='text-3xl font-bold'>{userData.name}</h1>
                             <p>@paraskalyan</p>
 
                         </CardHeader>
                         <CardContent className=''>
-                            <img className='rounded-full ring-8 ring-[#e6e6e6]' width={250} src='https://unavatar.io/github/1stevengrant' />
+                            <img className='rounded-full ring-8 ring-[#e6e6e6]' width={250} src={userData.image} />
                         </CardContent>
                     </Card>
                 </div>
@@ -24,15 +44,13 @@ const UserProfile = () => {
                     <Card>
                         <CardHeader className=' text-lg'>Bio & other details</CardHeader>
                         <CardContent>
-                            <BioDetail title1='My Role' des1='Frontend Developer' title2='My Experience' des2='Intermediate' />
-                            <BioDetail title1='My Role' des1='Frontend Developer' title2='My Experience' des2='Intermediate' />
-                            <BioDetail title1='My Role' des1='Frontend Developer' title2='My Experience' des2='Intermediate' />
-                            <BioDetail title1='My Role' des1='Frontend Developer' title2='My Experience' des2='Intermediate' />
-                            <BioDetail title1='My Role' des1='Frontend Developer' title2='My Experience' des2='Intermediate' />
+                            <h6 className='font-semibold'>{userData.bio}</h6>
+                            <BioDetail title1='My Role' des1='Frontend Developer' title2='My Experience' des2={userData.experienceLevel} />
+                            <BioDetail title1='Availability' des1={userData.availability ? <Badge>Avaliable</Badge> : <Badge>Not Available</Badge>} title2='Tech Stack' des2={userData.techStack} />
                         </CardContent>
                     </Card>
                 </div>
-                <div className='col-span-3'>
+                <div className='col-span-2'>
                     <Card>
                         <CardHeader className='text-lg'>
                             Social Media

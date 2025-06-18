@@ -1,7 +1,8 @@
 import React from 'react'
 import { Sidebar, SidebarHeader, SidebarGroup, SidebarContent, SidebarFooter, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from './ui/sidebar'
-import { Home, User, Settings, MessageCircle, Bell } from 'lucide-react'
+import { Home, User, Settings, MessageCircle, Bell, Users2Icon } from 'lucide-react'
 import { Link } from 'react-router'
+import { FaUserFriends } from 'react-icons/fa'
 
 const items = [
     {
@@ -23,6 +24,11 @@ const items = [
         title: "Chat",
         url: "#",
         icon: MessageCircle,
+    },
+    {
+        title: "Friends",
+        url: "#",
+        icon: Users2Icon,
     },
     {
         title: "Notifications",
